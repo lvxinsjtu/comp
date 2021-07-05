@@ -1,0 +1,30 @@
+#!/bin/bash
+#author:hermes
+#lxsjtu@gmail.com
+
+string=$1
+array=(${string//./ })
+
+# for var in ${array[@]}
+# do 
+	 # echo $var
+# done
+
+# echo type($array)
+
+gcc -o $array.o $array.c
+if [ $? -ne 0 ]; then 
+	echo "YES"
+	read -p " would you like to continue editing this file with vim? Y or N " reply
+       	echo $reply 	
+       	if [ $reply == "y" ]  ; then
+	       vim $array.c
+	else 
+		exit
+	fi 
+else 
+	exit
+fi
+
+./$array.o
+
